@@ -10,6 +10,7 @@
         <label for = "numero"> Exibir os números pares entre 1 e o número informado:</label>
         <input type="number" id="numero" name="numero" required>
         <button type="submit" name="verificar_pares">Verificar</button>
+    </form>
 
         <?php
 
