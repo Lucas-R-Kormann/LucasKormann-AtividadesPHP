@@ -10,5 +10,10 @@ $id = (int)$_GET["id"];
 
 $sql = "DELETE FROM usuarios WHERE id = ?";
 $stmt = mysqli_prepare($conn, $sql);
-header("Location: index.php");
+mysqli_stmt_bind_param($stmt, "i", $id);
+if (mysqli_stmt_execute($stmt)) {
+    header("Location: index.php");
+    exit();
+}
+
 ?>

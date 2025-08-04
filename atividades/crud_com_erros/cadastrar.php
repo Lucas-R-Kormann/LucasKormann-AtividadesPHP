@@ -22,3 +22,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Email: <input type="email" name="email"><br>
     <input type="submit" value="Cadastrar">
 </form>
+
+<a href='index.php'>Voltar</a>
