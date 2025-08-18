@@ -25,6 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["nome"];
     $posicao = $_POST["posicao"];
     $numero_camisa = $_POST["numero_camisa"];
+
+        if ($numero_camisa < 1 || $numero_camisa > 99) {
+    echo "<script>
+            alert('Por favor, insira um número de 1 a 99');
+            window.location.href = 'cadastrar_jogador.php';
+          </script>";
+    exit();
+}
     
     $sql = "UPDATE jogadores SET nome=?, posicao=?, numero_camisa=? WHERE id=?";
     $stmt = mysqli_prepare($conn, $sql);

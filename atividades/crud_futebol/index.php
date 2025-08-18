@@ -92,6 +92,7 @@ $sql = "SELECT * FROM partidas";
 $resultado = mysqli_query($conn, $sql);
 ?>
 
+<h1>Lista de Partidas</h1>
 <form method="get">
     <label for="time_partida">Filtrar por time participante:</label>
     <select name="time_partida" id="time_partida">

@@ -6,6 +6,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $posicao = $_POST["posicao"];
     $numero_camisa = $_POST["numero_camisa"];
 
+    if ($numero_camisa < 1 || $numero_camisa > 99) {
+    echo "<script>
+            alert('Por favor, insira um número de 1 a 99');
+            window.location.href = 'cadastrar_jogador.php';
+          </script>";
+    exit();
+}
+
     $sql = "INSERT INTO jogadores (nome, posicao, numero_camisa) VALUES ('$nome', '$posicao', '$numero_camisa')";
     $res = mysqli_query($conn, $sql);
     if ($res) {
