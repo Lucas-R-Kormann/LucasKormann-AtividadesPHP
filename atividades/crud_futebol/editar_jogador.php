@@ -9,7 +9,7 @@ if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
 
 $id = (int)$_GET["id"];
 
-$sql = "SELECT * FROM times WHERE id = ?";
+$sql = "SELECT * FROM jogadores WHERE id = ?";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
@@ -23,11 +23,12 @@ if (!$dado) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["nome"];
-    $cidade = $_POST["cidade"];
+    $posicao = $_POST["posicao"];
+    $numero_camisa = $_POST["numero_camisa"];
     
-    $sql = "UPDATE usuarios SET nome=?, email=? WHERE id=?";
+    $sql = "UPDATE jogadores SET nome=?, posicao=?, numero_camisa=? WHERE id=?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "ssi", $nome, $email, $id);
+    mysqli_stmt_bind_param($stmt, "ssii", $nome, $posicao, $numero_camisa, $id);
     
     if (mysqli_stmt_execute($stmt)) {
         header("Location: index.php");
@@ -39,7 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <form method="POST">
-    Nome: <input type="text" name="nome" value="<?= $dado['nome'] ?>" required><br>
-    Email: <input type="email" name="email" value="<?= $dado['email'] ?>" required><br>
+    Nome do jogador: <input type="text" name="nome" value="<?= $dado['nome'] ?>" required><br>
+    Posição do jogador: <input type="text" name="posicao" value="<?= $dado['posicao'] ?>" required><br>
+    Número da camisa: <input type="number" name="numero_camisa" value="<?= $dado['numero_camisa'] ?>" required><br>
     <input type="submit" value="Salvar">
 </form>
