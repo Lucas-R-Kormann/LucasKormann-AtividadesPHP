@@ -9,7 +9,7 @@ if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
 
 $id = (int)$_GET["id"];
 
-$sql = "SELECT * FROM times WHERE id = ?";
+$sql = "SELECT * FROM times WHERE id=?";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
