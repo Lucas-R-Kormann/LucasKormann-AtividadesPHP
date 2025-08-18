@@ -11,7 +11,7 @@ while ($linha = mysqli_fetch_array($resultado)) {
     echo "Nome: " . $linha['nome'] . "<br>";
     echo "Cidade: " . $linha['cidade'] . "<br>";
     echo "<a href='editar_time.php?id=" . $linha['id'] . "'>Editar time</a> | ";
-    echo "<a href='excluir.php?id=" . $linha['id'] . "'>Excluir</a>";
+    echo "<a href='excluir_time.php?id=" . $linha['id'] . "'>Excluir</a>";
     echo "<br><br>";
 }
 ?>
@@ -32,7 +32,7 @@ while ($linha = mysqli_fetch_array($resultado)) {
     echo "Posição: " . $linha['posicao'] . "<br>";
     echo "Número da camisa: " . $linha['numero_camisa'] . "<br>";
     echo "<a href='editar_jogador.php?id=" . $linha['id'] . "'>Editar informações</a> | ";
-    echo "<a href='excluir.php?id=" . $linha['id'] . "'>Excluir</a>";
+    echo "<a href='excluir_jogador.php?id=" . $linha['id'] . "'>Excluir</a>";
     echo "<br><br>";
 }
 ?>
@@ -53,7 +53,7 @@ while ($linha = mysqli_fetch_array($resultado)) {
     echo "Gols do time da casa: " . $linha['gols_casa'] . "<br>";
     echo "Gols do time de fora: " . $linha['gols_fora'] . "<br>";
     echo "<a href='editar_partida.php?id=" . $linha['id'] . "'>Editar informações</a> | ";
-    echo "<a href='excluir.php?id=" . $linha['id'] . "'>Excluir</a>";
+    echo "<a href='excluir_partida.php?id=" . $linha['id'] . "'>Excluir</a>";
     echo "<br><br>";
 }
 ?>
