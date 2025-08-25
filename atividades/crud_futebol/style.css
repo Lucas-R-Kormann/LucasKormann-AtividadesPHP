@@ -1,0 +1,44 @@
+.titulo{
+   border: black 1px solid;
+   margin: 10px;
+
+}
+
+.container-fluid { 
+    display: flex;
+}
+
+.lista{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.list-group{
+    border: 1px gray solid;
+    margin: 10px;
+    width: 250px;
+}
+
+.list-group-item {
+    background-color: #f8f9fa;
+    border: 1px solid #000000 !important;
+    margin: 10px;
+    border-radius: 0% !important;
+}
+
+.btn-primary{
+    border: 1px solid #dee2e6 !important; 
+    background-color: rgb(216, 210, 210) !important;
+    color: black !important;
+    margin: 5px;
+}
+
+.btn-secondary{
+     background-color: rgb(216, 210, 210) !important;
+     color: black !important;
+     height: 60px;
+}
+
+
+
+

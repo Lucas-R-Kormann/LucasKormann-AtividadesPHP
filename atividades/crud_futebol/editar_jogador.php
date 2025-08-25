@@ -1,5 +1,14 @@
-
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <?php
 include("conexao.php");
 
 
@@ -58,16 +67,47 @@ if ($res_times) {
 
 ?>
 
-<form method="POST">
-    Nome do jogador: <input type="text" name="nome" value="<?= $dado['nome'] ?>" required><br>
-    Posição do jogador: <input type="text" name="posicao" value="<?= $dado['posicao'] ?>" required><br>
-    Número da camisa: <input type="number" name="numero_camisa" value="<?= $dado['numero_camisa'] ?>" required><br>
-      Time do jogador: 
-        <select name="time_id" required>
-        <option value="">Selecione o time</option>
-        <?php foreach ($times as $time): ?>
-        <option value="<?php echo $time['id']; ?>"><?php echo htmlspecialchars($time['nome']); ?></option>
-        <?php endforeach; ?>
-        </select><br><br>
-    <input type="submit" value="Salvar">
-</form>
+ <h1 class="h1">Editar Jogador</h1>
+
+<div class="container-fluid">
+    <div class="lista">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome do jogador:</label>
+                <input type="text" class="form-control" name="nome" id="nome" 
+                       value="<?= htmlspecialchars($dado['nome'] ?? '') ?>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="posicao" class="form-label">Posição do jogador:</label>
+                <input type="text" class="form-control" name="posicao" id="posicao" 
+                       value="<?= htmlspecialchars($dado['posicao'] ?? '') ?>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="numero_camisa" class="form-label">Número da camisa:</label>
+                <input type="number" class="form-control" name="numero_camisa" id="numero_camisa" 
+                       value="<?= htmlspecialchars($dado['numero_camisa'] ?? '') ?>" 
+                       min="1" max="99" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="time_id" class="form-label">Time do jogador:</label>
+                <select class="form-select" name="time_id" id="time_id" required>
+                    <option value="">Selecione o time</option>
+                    <?php foreach ($times as $time): ?>
+                        <option value="<?php echo $time['id']; ?>" 
+                            <?= ($time['id'] == ($dado['time_id'] ?? '')) ? 'selected' : '' ?>>
+                            <?php echo htmlspecialchars($time['nome']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="index.php" class="btn btn-primary">Cancelar</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

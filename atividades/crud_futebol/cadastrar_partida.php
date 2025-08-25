@@ -37,39 +37,66 @@ if ($res_times) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Cadastrar Partida</title>
 </head>
 <body>
-    <h2>Cadastrar Partida</h2>
-    <form method="POST">
-        Data da partida: <input type="date" name="data_jogo" required><br><br>
-        
-        Time da casa: 
-        <select name="time_casa_id" required>
-            <option value="">Selecione o time</option>
-            <?php foreach ($times as $time): ?>
-                <option value="<?php echo $time['id']; ?>"><?php echo htmlspecialchars($time['nome']); ?></option>
-            <?php endforeach; ?>
-        </select><br><br>
-        
-        Gols do time da casa: <input type="number" name="gols_casa" min="0" required><br><br>
-        
-        Time visitante: 
-        <select name="time_fora_id" required>
-            <option value="">Selecione o time</option>
-            <?php foreach ($times as $time): ?>
-                <option value="<?php echo $time['id']; ?>"><?php echo htmlspecialchars($time['nome']); ?></option>
-            <?php endforeach; ?>
-        </select><br><br>
-        
-        Gols do time visitante: <input type="number" name="gols_fora" min="0" required><br><br>
-        
-        <input type="submit" value="Cadastrar Partida">
-    </form>
+    <div class="container-fluid mt-4">
+        <div class="titulo">
+            <h1 class="h1 text-center">Cadastrar Partida</h1>
+        </div>
 
-    <br>
-    <a href='index.php'>Voltar</a>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form method="POST" class="card p-4 shadow">
+                    <div class="mb-3">
+                        <label for="data_jogo" class="form-label">Data da partida:</label>
+                        <input type="date" class="form-control" name="data_jogo" id="data_jogo" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="time_casa_id" class="form-label">Time da casa:</label>
+                        <select class="form-select" name="time_casa_id" id="time_casa_id" required>
+                            <option value="">Selecione o time</option>
+                            <?php foreach ($times as $time): ?>
+                                <option value="<?php echo $time['id']; ?>"><?php echo htmlspecialchars($time['nome']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="gols_casa" class="form-label">Gols do time da casa:</label>
+                        <input type="number" class="form-control" name="gols_casa" id="gols_casa" min="0" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="time_fora_id" class="form-label">Time visitante:</label>
+                        <select class="form-select" name="time_fora_id" id="time_fora_id" required>
+                            <option value="">Selecione o time</option>
+                            <?php foreach ($times as $time): ?>
+                                <option value="<?php echo $time['id']; ?>"><?php echo htmlspecialchars($time['nome']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="gols_fora" class="form-label">Gols do time visitante:</label>
+                        <input type="number" class="form-control" name="gols_fora" id="gols_fora" min="0" required>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary">Cadastrar Partida</button>
+                        <a href='index.php' class="btn btn-secondary">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
