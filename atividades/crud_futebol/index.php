@@ -47,6 +47,7 @@ while ($linha = mysqli_fetch_array($resultado)) {
 
 $sql = "SELECT * FROM jogadores"; 
 $resultado = mysqli_query($conn, $sql);
+
 ?>
 
 <h1>Lista de Jogadores</h1>
@@ -65,7 +66,9 @@ $resultado = mysqli_query($conn, $sql);
 </form>
 
 <?php
-$sql_jogadores = "SELECT * FROM jogadores";
+$sql_jogadores = "SELECT j.*, t.nome as time_nome 
+                  FROM jogadores j 
+                  LEFT JOIN times t ON j.time_id = t.id";
 if (!empty($filtro_posicao)) {
     $sql_jogadores .= " WHERE posicao = '" . mysqli_real_escape_string($conn, $filtro_posicao) . "'";
 }
@@ -76,7 +79,14 @@ while ($linha = mysqli_fetch_array($resultado)) {
     echo "ID: " . $linha['id'] . "<br>";
     echo "Nome: " . $linha['nome'] . "<br>";
     echo "Posição: " . $linha['posicao'] . "<br>";
-    echo "Número da camisa: " . $linha['numero_camisa'] . "<br>";
+    echo "Número da camisa: " . $linha['numero_camisa'] . "<br>"; 
+    echo "Time: ";
+        if (!empty($linha['time_nome'])) {
+            echo $linha['time_nome'];
+        } else {
+            echo "<span style='color: #999; font-style: italic;'>Sem time</span>";
+        }
+    echo "<br>";
     echo "<a href='editar_jogador.php?id=" . $linha['id'] . "'>Editar informações</a> | ";
     echo "<a href='excluir_jogador.php?id=" . $linha['id'] . "'>Excluir</a>";
     echo "<br><br>";
