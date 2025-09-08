@@ -1,4 +1,14 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <?php
 include("conexao.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -39,22 +49,45 @@ if ($res_times) {
 
 ?>
 
-<form method="POST">
-    Cadastrar jogador<br>
-    Nome do jogador: <input type="text" name="nome"><br>
-    Posição: <input type="text" name="posicao"><br>
-    Número da camisa: <input type="number" name="numero_camisa"><br>
-    Time do jogador: 
-        <select name="time_id" required>
-        <option value="">Selecione o time</option>
-        <?php foreach ($times as $time): ?>
-        <option value="<?php echo $time['id']; ?>"><?php echo htmlspecialchars($time['nome']); ?></option>
-        <?php endforeach; ?>
-        </select><br><br>
-    <input type="submit" value="Cadastrar">
+<h1 class="h1">Cadastrar Jogador</h1>
 
-</form>
+<div class="container-fluid">
 
+    <div class="lista">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome do jogador:</label>
+                <input type="text" class="form-control" name="nome" id="nome" required>
+            </div>
 
+            <div class="mb-3">
+                <label for="posicao" class="form-label">Posição:</label>
+                <input type="text" class="form-control" name="posicao" id="posicao" required>
+            </div>
 
-<a href='index.php'>Voltar</a>
+            <div class="mb-3">
+                <label for="numero_camisa" class="form-label">Número da camisa:</label>
+                <input type="number" class="form-control" name="numero_camisa" id="numero_camisa" 
+                       min="1" max="99" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="time_id" class="form-label">Time do jogador:</label>
+                <select class="form-select" name="time_id" id="time_id" required>
+                    <option value="">Selecione o time</option>
+                    <?php foreach ($times as $time): ?>
+                        <option value="<?php echo $time['id']; ?>">
+                            <?php echo htmlspecialchars($time['nome']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <a href="index.php" class="btn btn-primary">Voltar</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
