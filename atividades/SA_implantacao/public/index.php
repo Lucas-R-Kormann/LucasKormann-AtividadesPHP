@@ -10,7 +10,6 @@
 <body>
      <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
         <div class="container">
-            <!-- Logo -->
             <a class="navbar-brand navbar-brand-custom" href="#">
                 <i class="bi bi-sign-intersection me-2"></i>
                 Trânsito Consciente
@@ -23,7 +22,6 @@
             
             <!-- Conteúdo da Navbar -->
             <div class="collapse navbar-collapse" id="navbarContent">
-                <!-- Itens do Menu Centralizados -->
                 <ul class="navbar-nav navbar-nav-custom">
                     <li class="nav-item">
                         <a class="nav-link nav-link-custom active" href="index.php">
@@ -36,18 +34,16 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-custom" href="#" role="button">
+                        <a class="nav-link nav-link-custom" href="educacao.php" role="button">
                             <i class="bi bi-book me-1"></i>Educação
                         </a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-custom" href="quiz.php" role="button">
+                            <i class="bi bi-book me-1"></i>Quiz
+                        </a>
+                    </li>
                 </ul>
-                
-                <!-- Botões à direita -->
-                <div class="btn-container">
-                    <button class="btn btn-outline-custom">
-                        <i class="bi bi-telephone me-1"></i>Contato
-                    </button>
-                </div>
             </div>
         </div>
     </nav>
