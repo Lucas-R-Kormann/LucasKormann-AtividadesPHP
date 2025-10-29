@@ -1,6 +1,4 @@
 <?php
-
-    
         session_start();
 
         include("../includes/conexao.php");
@@ -22,10 +20,6 @@
             header("Location: index.php");
             exit;
         }
-
-
-
-
     ?>
 
 <!DOCTYPE html>
@@ -33,11 +27,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Página Inicial</title>
 </head>
 <body>
     <h1>Lista de Produtos</h1>
     <p><a href="?logout=1">Sair</a></p>
+    <p><a href="cadastrar_produto.php">Cadastrar produto</a></p>
     <?php
         $sql_produtos = "SELECT * FROM produtos";
         $stmt = $conn->prepare($sql_produtos);
@@ -52,6 +47,8 @@
                 echo "<li><strong>Preço:</strong> R$ " . $produtos['preco_produto'] . "</li>";
                 echo "<li><strong>Estoque:</strong> " . $produtos['quantidade_estoque'] . " unidades</li>";
                 echo "<a class='btn btn-primary ' href='editar_produto.php?id=" . $produtos['id_produtos'] . "'>Editar informações</a>";
+                echo "<br>";
+                echo "<a class = 'btn btn-primary' href='excluir_produto.php?id=" . $produtos['id_produtos'] . "'>Excluir</a>";
                 echo "<li>-----------------------</li>";
 }
         echo "</ul>";  

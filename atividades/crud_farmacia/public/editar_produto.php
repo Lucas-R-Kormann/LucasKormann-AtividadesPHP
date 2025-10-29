@@ -1,14 +1,25 @@
 <?php
-session_start();
+    session_start();
 
-if (empty($_SESSION["user_id"])){ 
-    header("Location: index.php"); 
-}
+    include("../includes/conexao.php");
+    include("../src/Auth.php");
+    include("../src/User.php");
 
-include("../includes/conexao.php");
-include("../src/Auth.php");
-include("../src/User.php");
+    $auth = new Auth();
+    $user = new User($conn);
 
+    $currentUser = $user->getUserById($_SESSION['user_id']);
+
+
+        if (isset($_GET['logout'])) {
+            session_destroy();
+            header("Location: index.php");
+            exit;
+        }
+        if (!$auth->isLoggedIn()) {
+            header("Location: index.php");
+            exit;
+        }
 $msg = "";
 
 if (isset($_GET['id'])) {
