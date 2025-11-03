@@ -49,14 +49,16 @@
                     echo "<li><strong>Status:</strong>" . $tarefas['status'] . "</li>";
                     echo "<li><strong>Data de cadastro:</strong>" . $tarefas['data_cadastro'] . "</li>";
                     echo "<li><strong>Usuário responsável:</strong>" . $tarefas['nome_usuario'] . "</li>";
+                    echo "<a href='editar_tarefas.php?id=" . $tarefas['id_tarefa'] . "'>Editar tarefa</a>";
                     echo "<br>";
                     echo "<br>";
                 }
         ?>
 
-        <p><a href="cadastrar_tarefa.php">Cadastrar tarefa</a></P>
+                
+        <p><a href="cadastrar_tarefa.php">Cadastrar tarefa</a></p>
         
-        <p><a href="cadastrar_usuario.php">Cadastrar Usuário</a></P>
+        <p><a href="cadastrar_usuario.php">Cadastrar Usuário</a></p>
         
         <p><a href="?logout=1">Sair</a></p>
     </body>

@@ -16,16 +16,22 @@
         $stmt_usuarios->execute();
         $usuarios = $stmt_usuarios->fetchAll(PDO::FETCH_ASSOC);
 
+        $id_tarefa = $_GET['id'] ?? $_POST['id_tarefa'] ?? null;
+
+        if (!$id_tarefa) {
+        die("ID da tarefa não especificado!");
+        }
+
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $descricao = $_POST["descricao_tarefa"] ?? "";
             $setor = $_POST["nome_setor"] ?? "";
             $prioridade = $_POST["prioridade"] ?? "";
             $status = $_POST["status"] ?? "";
             $usuario = $_POST["id_usuario"] ?? "";
-        
 
-        $sql = "INSERT INTO tarefas(descricao_tarefa, nome_setor, prioridade, status, id_usuario) VALUES (:descricao_tarefa, :nome_setor, :prioridade, :status, :id_usuario)";
+        $sql = "UPDATE tarefas SET descricao_tarefa=:descricao_tarefa, nome_setor=:nome_setor, prioridade=:prioridade, status=:status, id_usuario=:id_usuario WHERE id_tarefa=:id_tarefa";
         $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":id_tarefa", $id_tarefa);
         $stmt->bindParam(":descricao_tarefa", $descricao);
         $stmt->bindParam(":nome_setor", $setor);
         $stmt->bindParam(":prioridade", $prioridade);
@@ -35,20 +41,20 @@
         header("Location: pagina_inicial.php");
         exit();
     } else {
-        echo "Erro ao cadastrar!";
+        echo "Erro ao atualizar!";
     }
 }
 ?>
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastrar Tarefa</title>
+        <title>Editar Tarefa</title>
     </head>
     <body>
-        <h1>Cadastrar Tarefa</h1>
+        <h1>Editar Tarefa</h1>
         <div>
         <form method="POST">
             <div>
@@ -84,6 +90,7 @@
             </div>
             <br>
             <div>
+            <div>
                 <label for="id_usuario">Usuário responsável: </label>
                 <select name="id_usuario" id="id_usuario" required>
                     <option value="">Selecione um usuário</option>
@@ -94,9 +101,9 @@
                         </option>
                     <?php endforeach; ?>
                 </select>
-            </div>
+</div>
             <br>
-            <button type="submit">Cadastrar</button>
+            <button type="submit">Salvar</button>
         </form>
     </div>
 
